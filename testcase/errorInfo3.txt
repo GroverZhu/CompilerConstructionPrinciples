@@ -1,0 +1,3 @@
+In row: 57 is expect access,  but is RIGHTBRACE
+In row: 58 is expect RIGHTBRACE,  but is SEMICOLON
+In row: 59 is expect SEMICOLON,  but is properties

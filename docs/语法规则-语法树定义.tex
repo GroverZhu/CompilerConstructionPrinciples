@@ -1,0 +1,377 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{tabularx,makecell,multirow,diagbox}
+\usepackage{graphicx,bm,amsmath,tikz}
+\usepackage{float,forest}
+\usetikzlibrary{trees}
+
+
+\begin{document}
+\section{改造现有语法规则}
+\subsection{现有语法规则}
+
+\begin{equation*} 
+\begin{split}
+ThreadSpec \rightarrow & \bm{thread \  identifier} \\
+& [ \bm{features}  \ featureSpec ] \\
+& [ \bm{flows} \  flowSpec ] \\
+& [ \bm{properties} \ association\bm{;} ] \\
+& \bm{end \ identifier ;}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+featureSpec \rightarrow portSpec|ParameterSpec| \bm{none ;}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+portSpec \rightarrow \bm{identifier :} IOtype \ portType [ \bm{\{} \{ association \} \bm{\}} ] \bm{;}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+ParameterSpec \rightarrow \bm{identifier :}  IOtype \ \bm{parameter} [ reference ][ \bm{\{} \{ association \} \bm{\}} ] \bm{;}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+portType \rightarrow \bm{data \  port}[ reference ] | \bm{event \ data \ port} [ reference ]| \bm{event \  port}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+IOtype \rightarrow \bm{in} | \bm{out} | \bm{in \ out} 
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+flowSpec \rightarrow flowSourceSpec| flowSinkSpec| flowPathSpec| \bm{none;}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+flowSourceSpec \rightarrow \bm{identifier : flow \  source \ identifier}[ \bm{\{} \{ association \} \bm{\}} ] \bm{;}
+\end{split}
+\end{equation*}
+
+
+\begin{equation*} 
+\begin{split}
+flowSinkSpec \rightarrow \bm{identifier:flow \ sink \ identifier} [ \bm{\{} \{ association \} \bm{\}} ] \bm{;}
+\end{split}
+\end{equation*}
+
+
+\begin{equation*} 
+\begin{split}
+flowPathSpec \rightarrow \bm{identifier : flow \ path \ identifier -> identifier;}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+association \rightarrow [ \bm{identifier ::} ] \bm{identifier} \ splitter [ \bm{constant} ] \bm{access \ decimal} | \bm{none}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+splitter \rightarrow  \bm{=>} | \bm{+=>} 
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+reference \rightarrow [  \bm{\{ identifier :: \}} ]  \bm{identifier}
+\end{split}
+\end{equation*}
+
+\subsection{改造后的文法}
+\begin{equation*} 
+\begin{split}
+ThreadSpec \rightarrow & \bm{thread \  identifier} \\
+& [ \bm{features}  \ featureSpec ] \\
+& [ \bm{flows} \  flowSpec ] \\
+& [ \bm{properties} \ association\bm{;} ] \\
+& \bm{end \ identifier ;}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+featureSpec \rightarrow \bm{identifier :}IOtype \ partSpec | \bm{none ;}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+partType \rightarrow portSpec | parameterSpec
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+portSpec \rightarrow  portType [ \bm{\{} \{ association \} \bm{\}} ] \bm{;}
+\end{split}
+\end{equation*}
+
+
+\begin{equation*} 
+\begin{split}
+ParameterSpec \rightarrow  \bm{parameter} [ reference ][ \bm{\{} \{ association \} \bm{\}} ] \bm{;}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+portType \rightarrow \bm{data \  port}[ reference ] | \bm{event \ data \ port} [ reference ]| \bm{event \  port}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+IOtype \rightarrow \bm{in} | \bm{out} | \bm{in \ out} 
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+flowSpec \rightarrow \bm{identifier \ : \ flow} \ typeSpec| \bm{none;}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+typeSpec \rightarrow flowSourceSpec | flowSinkSpec | flowPathSpec
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+flowSourceSpec \rightarrow \bm{  source \ identifier}[ \bm{\{} \{ association \} \bm{\}} ] \bm{;}
+\end{split}
+\end{equation*}
+
+
+\begin{equation*} 
+\begin{split}
+flowSinkSpec \rightarrow \bm{ sink \ identifier} [ \bm{\{} \{ association \} \bm{\}} ] \bm{;}
+\end{split}
+\end{equation*}
+
+
+\begin{equation*} 
+\begin{split}
+flowPathSpec \rightarrow \bm{ path \ identifier -> identifier;}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+association \rightarrow [ \bm{identifier ::} ] \bm{identifier} \ splitter [ \bm{constant} ] \bm{access \ decimal} | \bm{none}
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+splitter \rightarrow  \bm{=>} | \bm{+=>} 
+\end{split}
+\end{equation*}
+
+\begin{equation*} 
+\begin{split}
+reference \rightarrow [  \bm{\{ identifier :: \}} ]  \bm{identifier}
+\end{split}
+\end{equation*}
+
+\section{语法树定义}
+树中的线用虚线表示为可选部分，有省略号表示可以有多个
+\begin{equation*} 
+\begin{split}
+ThreadSpec \rightarrow & \bm{thread \  identifier} \\
+& [ \bm{features}  \ featureSpec ] \\
+& [ \bm{flows} \  flowSpec ] \\
+& [ \bm{properties} \ association\bm{;} ] \\
+& \bm{end \ identifier ;}
+\end{split}
+\end{equation*}
+% 插入图片
+\centering
+\begin{forest} 
+    [identifier,circle,draw 
+      [featureSpec,circle, draw, dotted]
+      [flowSpec,circle, draw, dotted]
+      [association,circle, draw, dotted]
+    ] 
+\end{forest}
+
+
+
+\begin{equation*} 
+\begin{split}
+featureSpec \rightarrow \bm{identifier :}IOtype \ partSpec | \bm{none ;}
+\end{split}
+\end{equation*}
+% 插入图片
+\centering
+\begin{forest} 
+    [identifier,circle,draw 
+      [IOtype,circle, draw]
+      [partSpec,circle, draw]
+    ] 
+\end{forest}
+
+
+\begin{equation*} 
+\begin{split}
+portSpec \rightarrow  portType [ \bm{\{} \{ association \} \bm{\}} ] \bm{;}
+\end{split}
+\end{equation*}
+% 插入图片
+\centering
+\begin{forest} 
+    [portSpe,circle,draw 
+      [portType,circle, draw]
+      [association...association,circle, draw, dotted]
+    ] 
+\end{forest}
+
+
+\begin{equation*} 
+\begin{split}
+ParameterSpec \rightarrow  \bm{parameter} [ reference ][ \bm{\{} \{ association \} \bm{\}} ] \bm{;}
+\end{split}
+\end{equation*}
+% 插入图片
+\centering
+\begin{forest} 
+    [ParameterSpec ,circle,draw 
+      [reference,circle, draw,dotted]
+      [association...association,circle, draw, dotted]
+    ] 
+\end{forest}
+
+
+\begin{equation*} 
+\begin{split}
+portType \rightarrow \bm{data \  port}[ reference ] | \bm{event \ data \ port} [ reference ]| \bm{event \  port}
+\end{split}
+\end{equation*}
+
+在event port的情况下，reference是不存在的，下述为简便语法树的结构，还是将reference添加为可选项。
+
+% 插入图片
+\centering
+\begin{forest} 
+    [data port/event data port/event port ,circle,draw 
+      [reference,circle, draw,dotted]
+    ] 
+\end{forest}
+
+\begin{equation*} 
+\begin{split}
+IOtype \rightarrow \bm{in} | \bm{out} | \bm{in \ out} 
+\end{split}
+\end{equation*}
+%插入图片
+\centering
+\begin{forest} 
+    [in/out/in out,circle,draw 
+    ] 
+\end{forest}
+
+\begin{equation*} 
+\begin{split}
+flowSpec \rightarrow \bm{identifier \ : \ flow} \ typeSpec| \bm{none;}
+\end{split}
+\end{equation*}
+% 插入图片
+\centering
+\begin{forest} 
+    [ identifier ,circle,draw 
+      [ typeSpec,circle, draw]
+    ] 
+\end{forest}
+
+\begin{equation*} 
+\begin{split}
+flowSourceSpec \rightarrow \bm{  source \ identifier}[ \bm{\{} \{ association \} \bm{\}} ] \bm{;}
+\end{split}
+\end{equation*}
+% 插入图片
+\centering
+\begin{forest} 
+    [ identifier ,circle,draw 
+      [ association...association,circle, draw,dotted]
+    ] 
+\end{forest}
+\begin{equation*} 
+\begin{split}
+flowSinkSpec \rightarrow \bm{ sink \ identifier} [ \bm{\{} \{ association \} \bm{\}} ] \bm{;}
+\end{split}
+\end{equation*}
+% 插入图片
+\centering
+\begin{forest} 
+    [ identifier ,circle,draw 
+      [ association...association,circle, draw,dotted]
+    ] 
+\end{forest}
+
+\begin{equation*} 
+\begin{split}
+flowPathSpec \rightarrow \bm{ path \ identifier -> identifier;}
+\end{split}
+\end{equation*}
+% 插入图片
+\centering
+\begin{forest} 
+    [ identifier1{,}identifier2 ,circle,draw] 
+\end{forest}
+
+\begin{equation*} 
+\begin{split}
+association \rightarrow [ \bm{identifier ::} ] \bm{identifier} \ splitter [ \bm{constant} ] \bm{access \ decimal} | \bm{none}
+\end{split}
+\end{equation*}
+
+在该语法树中第二个identifier即identifier2为可选项
+
+% 插入图片
+\centering
+\begin{forest} 
+    [ identifier1{,}identifier2 ,circle,draw
+    [splitter,circle, draw]
+    [decimal,circle, draw]
+    ] 
+\end{forest}
+
+\begin{equation*} 
+\begin{split}
+splitter \rightarrow  \bm{=>} | \bm{+=>} 
+\end{split}
+\end{equation*}
+% 插入图片
+\centering
+\begin{forest} 
+    [ {=>}/{+=>} ,circle,draw] 
+\end{forest}
+
+\begin{equation*} 
+\begin{split}
+reference \rightarrow [  \bm{\{ identifier :: \}} ]  \bm{identifier}
+\end{split}
+\end{equation*}
+\centering
+\begin{forest} 
+    [ identifier1{,}identifier2{,}{\dots} ,circle,draw] 
+\end{forest}
+
+\end{document}

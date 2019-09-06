@@ -1,0 +1,77 @@
+--statement: Thread_SPEC, token: IDENTIFIER, value: Thread1
+	--statement: FEATURE_SPEC, token: IDENTIFIER, value: AP_Position_Input
+		--statement: IOTYPE, token: in, value: in
+		--statement: PORT_SPEC
+			--statement: PORT_TYPE, token: EVENT_DATA_PORT, value: EVENT_DATA_PORT
+				--statement: REFERENCE, token: IDENTIFIER, value: Nav_Types	Position_GPS
+	--statement: FLOW_SPEC, token: IDENTIFIER, value: flow1
+		--statement: FLOW_PATH_SPEC, token: IDENTIFIER, value: signal	result1
+	--statement: ASSOCIATION, token: IDENTIFIER, value: dispatch_protocol
+		--statement: SPLITTER, token: EQUALRIGHTANGLEBRACKET, value: EQUALRIGHTANGLEBRACKET
+		--statement: DECIMAL, token: DECIMAL, value: 50.0
+
+--statement: Thread_SPEC, token: IDENTIFIER, value: Thread_2
+	--statement: FEATURE_SPEC, token: IDENTIFIER, value: AP_Position_Input
+		--statement: IOTYPE, token: in, value: in
+		--statement: PORT_SPEC
+			--statement: PORT_TYPE, token: DATA_PORT, value: DATA_PORT
+				--statement: REFERENCE, token: IDENTIFIER, value: Nav_Types1	Nav_Types2	Position_GPS
+	--statement: FLOW_SPEC, token: none, value: none
+		--statement: FLOW_SOURCE_SPEC, token: IDENTIFIER, value: signal
+			--statement: ASSOCIATION, token: IDENTIFIER, value: result1	result2
+				--statement: SPLITTER, token: PLUSEQUALANGLEBRACKET, value: PLUSEQUALANGLEBRACKET
+
+--statement: Thread_SPEC, token: IDENTIFIER, value: Thread3d
+	--statement: FEATURE_SPEC, token: IDENTIFIER, value: AP_Position_Input
+		--statement: IOTYPE, token: out, value: out
+		--statement: PORT_SPEC
+			--statement: PORT_TYPE, token: DATA_PORT, value: DATA_PORT
+				--statement: REFERENCE, token: IDENTIFIER, value: Nav_Types1	Nav_Types2	Position_GPS
+			--statement: ASSOCIATION, token: IDENTIFIER, value: result1	result2
+				--statement: SPLITTER, token: PLUSEQUALANGLEBRACKET, value: PLUSEQUALANGLEBRACKET
+				--statement: DECIMAL, token: DECIMAL, value: 50.0
+	--statement: FLOW_SPEC, token: IDENTIFIER, value: flow1
+		--statement: FLOW_SINK_SPEC, token: IDENTIFIER, value: signal
+			--statement: ASSOCIATION, token: IDENTIFIER, value: result1	result2
+				--statement: SPLITTER, token: PLUSEQUALANGLEBRACKET, value: PLUSEQUALANGLEBRACKET
+				--statement: DECIMAL, token: DECIMAL, value: 50.0
+	--statement: ASSOCIATION, token: IDENTIFIER, value: size
+		--statement: SPLITTER, token: EQUALRIGHTANGLEBRACKET, value: EQUALRIGHTANGLEBRACKET
+		--statement: DECIMAL, token: DECIMAL, value: +50.0
+
+--statement: Thread_SPEC, token: IDENTIFIER, value: Thread4
+	--statement: FEATURE_SPEC, token: IDENTIFIER, value: AP_Position_Input
+		--statement: IOTYPE, token: INOUT, value: INOUT
+		--statement: PARAMETER_SPEC
+			--statement: REFERENCE, token: IDENTIFIER, value: Nav_Types1	Nav_Types2	Position_GPS
+			--statement: ASSOCIATION, token: IDENTIFIER, value: result1	result2
+				--statement: SPLITTER, token: EQUALRIGHTANGLEBRACKET, value: EQUALRIGHTANGLEBRACKET
+				--statement: DECIMAL, token: DECIMAL, value: 50.0
+	--statement: FLOW_SPEC, token: IDENTIFIER, value: flow1
+		--statement: FLOW_SINK_SPEC, token: IDENTIFIER, value: signal
+			--statement: ASSOCIATION, token: IDENTIFIER, value: result1	result2
+				--statement: SPLITTER, token: PLUSEQUALANGLEBRACKET, value: PLUSEQUALANGLEBRACKET
+				--statement: DECIMAL, token: DECIMAL, value: 50.0
+	--statement: ASSOCIATION, token: IDENTIFIER, value: size
+		--statement: SPLITTER, token: EQUALRIGHTANGLEBRACKET, value: EQUALRIGHTANGLEBRACKET
+		--statement: DECIMAL, token: DECIMAL, value: -50.0
+
+--statement: Thread_SPEC, token: IDENTIFIER, value: Thread5
+	--statement: FEATURE_SPEC, token: IDENTIFIER, value: AP_Position_Input
+		--statement: IOTYPE, token: INOUT, value: INOUT
+		--statement: PORT_SPEC
+			--statement: PORT_TYPE, token: EVENT_PORT, value: EVENT_PORT
+	--statement: FLOW_SPEC, token: IDENTIFIER, value: flow1
+		--statement: FLOW_SINK_SPEC, token: IDENTIFIER, value: signal
+			--statement: ASSOCIATION, token: IDENTIFIER, value: result1	result2
+				--statement: SPLITTER, token: PLUSEQUALANGLEBRACKET, value: PLUSEQUALANGLEBRACKET
+				--statement: DECIMAL, token: DECIMAL, value: 50.0
+	--statement: ASSOCIATION, token: IDENTIFIER, value: size
+		--statement: SPLITTER, token: EQUALRIGHTANGLEBRACKET, value: EQUALRIGHTANGLEBRACKET
+		--statement: DECIMAL, token: DECIMAL, value: 50.0
+
+--statement: Thread_SPEC, token: IDENTIFIER, value: Thread6
+	--statement: FEATURE_SPEC, token: none, value: none
+	--statement: FLOW_SPEC, token: none, value: none
+	--statement: ASSOCIATION, token: none, value: none
+
