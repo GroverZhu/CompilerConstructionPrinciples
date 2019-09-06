@@ -1,6 +1,7 @@
 # 编译原理实验课   
 - [词法分析](#词法分析)   
 - [语法分析](#语法分析)   
+- [复习总结](#复习总结)
 
 实验课内容对线程语法的词法分析和语法分析，实验项目文件结构如下所示。run文件夹下为程序运行入口，testcase文件下为测试用例   
 
@@ -22,8 +23,15 @@
 │       └── TreeNode.java
 └── testcase
 ```
+
+所有文档文件为tex文件，也自行编译，也可进入[release](https://github.com/GroverZhu/CompilerConstructionPrinciples/releases)获取   
+
 ## 词法分析   
 根据有穷状态机进行词法分析，采用双层switch-case嵌套实现。[状态转化图](./docs/词法规则-状态转化图.tex)   
 
 ##  语法分析   
 根据递归下降法进行语法分析[语法树定义](./docs/语法规则-语法树定义.tex)   
+
+## 复习总结   
+
+对基本知识点进行整理[🔗](./review.tex)
