@@ -1,0 +1,37 @@
+thread
+IDENTIFIER#Thread1
+error, row: 1, column: 14. "#" is a undefined symbol in this lexical. 
+features
+error, row: 3, column: 1. "_" is a undefined symbol in this lexical. 
+flows
+error, row: 5 column: 9. "f" is a undefined symbol in decimal lexical. 
+properties
+IDENTIFIER#dispatch_protocol
+EQUALRIGHTANGLEBRACKET
+access
+DECIMAL#50.0
+SEMICOLON
+end
+IDENTIFIER#Thread1
+SEMICOLON
+IDENTIFIER#Thread
+IDENTIFIER#Thread2
+features
+error, row: 12, column: 1. "_" is a undefined symbol in this lexical. 
+flows
+IDENTIFIER#flow1
+COLON
+flow
+path
+IDENTIFIER#signal
+MINUSRIGHTANGLEBRACKET
+IDENTIFIER#result1
+SEMICOLON
+properties
+IDENTIFIER#dispatch_protocol
+EQUALRIGHTANGLEBRACKET
+access
+error, row: 16, column: 29. "." is a undefined symbol in this lexical. 
+end
+IDENTIFIER#Thread2
+SEMICOLON
